@@ -1,0 +1,8 @@
+{
+    "kernel32.dll": {
+        "ExitProcess": "WIN32_EXIT_PROCESS"
+    },
+    "user32.dll": {
+        "MessageBoxA": "WIN32_MESSAGE_BOX_ASCII"
+    }
+}
