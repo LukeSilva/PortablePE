@@ -16,7 +16,7 @@ SECTIONS
   /* Allow the text section to be in the first page of the file */
   . += SIZEOF_HEADERS; 
   .text ALIGN(0x1000): { 
-    *(.text) 
+    *(.text)
     . = ALIGN(0x1000);
   } :text
   /* Move to the next page in memory. Align will create a code gap */

@@ -4,6 +4,9 @@ export PREFIX="$PWD/cross"
 export TARGET=i686-elf
 export PATH="$PREFIX/bin:$PATH"
 
+echo "Need to get new versions of toolchain, dont use me"
+echo "Fails with: gcc-6.3.0/gcc/ubsan.c:1474:23: error: ISO C++ forbids comparison between pointer and integer [-fpermissive]"
+exit 1
 
 echo "Removing old build directories"
 rm -rf build-binutils || true

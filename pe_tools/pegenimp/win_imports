@@ -1,0 +1,4 @@
+kernel32.dll
+  GetStdHandle
+  WriteConsoleA
+  ExitProcess
