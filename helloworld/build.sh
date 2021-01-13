@@ -1,8 +1,16 @@
-PATH="$PWD/../toolchain/cross/bin:$PATH"
+PATH="$PWD/../toolchain/cross/bin:$PWD/../pe_tools/bin:$PATH"
+LINK_SCRIPT="$PWD/../pe_tools/linker.T"
 
-i686-elf-as helloworld.s -o helloworld.o
-i686-elf-ld -s -T linker.T -Map mapfile helloworld.o
-WIN_ENTRY=`grep _start_win mapfile | sed -e 's/^.*\(0x[0-9a-f]*\).*/\1/g'`
-echo "#define WIN_ENTRY $WIN_ENTRY" > win_entry.h
-gcc create_exe.c -o create_exe
-./create_exe ./a.out out.exe
+mkdir -p build
+
+i686-elf-as helloworld.s -o build/helloworld.o
+
+cd build
+cp ../win_imports .
+pegenimp
+
+i686-elf-as win_imports.s -o win_imports.o
+
+i686-elf-ld -s -T $LINK_SCRIPT win_imports.o helloworld.o 
+
+create_exe ./a.out ../out.exe
